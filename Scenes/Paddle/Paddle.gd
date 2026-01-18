@@ -15,10 +15,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	update_movement()
-
-
-func update_movement() -> void:
 	velocity.x = PLAYER_SPEED * get_input()
 	move_and_slide()
 
