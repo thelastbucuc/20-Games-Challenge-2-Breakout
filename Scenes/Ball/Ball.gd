@@ -28,14 +28,20 @@ func _physics_process(delta: float) -> void:
 func update_movement(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
 	if collision:
-		var collider = collision.get_collider()
+		var collider: Object = collision.get_collider()
 		if collider.is_in_group(Brick.GROUP_NAME):
 			collider.queue_free()
 		if collider.is_in_group(Paddle.GROUP_NAME):
-			var bounce_angle = (global_position.x - collider.global_position.x) / (collider.get_node("CollisionShape2D").shape.get_rect().size.x / 2)
+			var collision_diff = global_position.x - collider.global_position.x
+			var paddle_width = collider.get_node("CollisionShape2D").shape.size.x
+			velocity.x = (collision_diff / (paddle_width / 2))
+			#clampf(velocity.x, -0.7, 0.7)
+			velocity.y = -abs(velocity.y) 
+			velocity = velocity.normalized() * _speed
 			#bounce_angle = clamp(bounce_angle, -0.7, 0.7)
-			var new_direction = Vector2(-velocity.normalized().y, bounce_angle).normalized()
-			velocity = new_direction * _speed
+			#var new_direction = Vector2(-velocity.normalized().y, bounce_angle).normalized()
+			#velocity = new_direction * _speed
 		else:
 			velocity = velocity.bounce(collision.get_normal())
-		_speed *= SPEED_MULT
+		#_speed *= SPEED_MULT
+		print(velocity.x)
