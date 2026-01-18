@@ -19,7 +19,7 @@ You can play the web version of the game directly on your browser via itch.io:
 
 - **Movement:** `A` / `D` or `Left` / `Right Arrow Keys` to move the paddle or simply using mouse.
 - **Start/Restart:** `Space` or `R` to launch the ball or restart after a game over.
-- **Menu:** `Esc` to pause.
+- **Menu:** `Esc` or click `Gear Icon` on the bottom left to pause.
 
 ## Technical Breakdown
 
