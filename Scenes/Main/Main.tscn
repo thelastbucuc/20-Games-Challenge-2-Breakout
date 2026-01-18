@@ -12,12 +12,12 @@ script = ExtResource("1_i3fi7")
 [node name="Border" parent="." instance=ExtResource("1_p8rbg")]
 
 [node name="Paddle" parent="." instance=ExtResource("2_qtv3y")]
-position = Vector2(180, 560)
+position = Vector2(320, 329)
 collision_mask = 1
 motion_mode = 1
 
 [node name="Ball" parent="." instance=ExtResource("4_i3fi7")]
-position = Vector2(179, 505)
+position = Vector2(320, 274)
 motion_mode = 1
 
 [node name="BrickContainer" type="Node2D" parent="."]

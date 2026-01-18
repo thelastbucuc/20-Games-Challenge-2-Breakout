@@ -14,9 +14,9 @@ func _ready() -> void:
 func generate_bricks() -> void:
 	var row_colors = [Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE]
 	var rows = row_colors.size()
-	var cols = 7
+	var cols = 12
 	var margin = 4
-	var offset_x = 35
+	var offset_x = 55
 	var offset_y = 50
 	var brick_width = 44
 	var brick_height = 12

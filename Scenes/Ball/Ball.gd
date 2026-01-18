@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED_MULT: float = 10
+const SPEED_MULT: float = 5
 const MARGIN: float = 30
 
 

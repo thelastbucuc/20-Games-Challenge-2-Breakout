@@ -4,8 +4,9 @@ extends CharacterBody2D
 class_name Paddle
 
 
-const PLAYER_SPEED: float = 200.0
+const PLAYER_SPEED: float = 400.0
 const GROUP_NAME: String = "paddle"
+const MIN_SIZE: float = 20.0
 
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -48,6 +49,6 @@ func get_input() -> float:
 
 
 func on_touched_ceiling() -> void:
-	if sprite_2d.scale.x > 10:
+	if sprite_2d.scale.x > MIN_SIZE:
 		sprite_2d.scale.x -= 10
 		collision_shape_2d.shape.size.x -= 10

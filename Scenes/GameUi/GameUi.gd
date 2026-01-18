@@ -22,6 +22,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause"):
 		pause_game()
 		SoundManager.play_sound(sound, "ui_button")
+	if Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
 
 
 func _enter_tree() -> void:
