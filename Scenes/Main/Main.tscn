@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm6adtums7tlx"]
+[gd_scene load_steps=5 format=3 uid="uid://dm6adtums7tlx"]
 
 [ext_resource type="PackedScene" uid="uid://pg2lloqaxf66" path="res://Scenes/Border/Border.tscn" id="1_p8rbg"]
 [ext_resource type="PackedScene" uid="uid://vqg6ylvoy473" path="res://Scenes/Paddle/Paddle.tscn" id="2_qtv3y"]
+[ext_resource type="PackedScene" uid="uid://6go1yaao06g2" path="res://Scenes/Brick/Brick.tscn" id="3_cmk6n"]
+[ext_resource type="PackedScene" uid="uid://brw33lvwy03yi" path="res://Scenes/Ball/Ball.tscn" id="4_i3fi7"]
 
 [node name="Main" type="Node2D"]
 
@@ -9,3 +11,27 @@
 
 [node name="Paddle" parent="." instance=ExtResource("2_qtv3y")]
 position = Vector2(180, 560)
+
+[node name="Brick" parent="." instance=ExtResource("3_cmk6n")]
+position = Vector2(36, 38)
+
+[node name="Brick2" parent="." instance=ExtResource("3_cmk6n")]
+position = Vector2(85, 38)
+
+[node name="Brick3" parent="." instance=ExtResource("3_cmk6n")]
+position = Vector2(134, 38)
+
+[node name="Brick4" parent="." instance=ExtResource("3_cmk6n")]
+position = Vector2(183, 38)
+
+[node name="Brick5" parent="." instance=ExtResource("3_cmk6n")]
+position = Vector2(231, 38)
+
+[node name="Brick6" parent="." instance=ExtResource("3_cmk6n")]
+position = Vector2(278, 38)
+
+[node name="Brick7" parent="." instance=ExtResource("3_cmk6n")]
+position = Vector2(325, 38)
+
+[node name="Ball" parent="." instance=ExtResource("4_i3fi7")]
+position = Vector2(179, 505)
