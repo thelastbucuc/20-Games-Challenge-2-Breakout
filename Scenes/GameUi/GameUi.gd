@@ -11,6 +11,7 @@ const BALL = preload("uid://brw33lvwy03yi")
 @onready var menu_label: Label = $Menu/Menu/VB/MenuLabel
 @onready var menu_score_label: Label = $Menu/Menu/VB/HB/ScoreVB/MenuScoreLabel
 @onready var menu_high_score_label: Label = $Menu/Menu/VB/HB/HighScoreVB/MenuHighScoreLabel
+@onready var sound: AudioStreamPlayer2D = $Sound
 
 
 var _score: int = 0
@@ -20,6 +21,7 @@ var _lives: int = 3
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause"):
 		pause_game()
+		SoundManager.play_sound(sound, "ui_button")
 
 
 func _enter_tree() -> void:
@@ -53,6 +55,7 @@ func on_ball_missed() -> void:
 	_lives -=1 
 	lives_label.text = "Lives: " + str(_lives)
 	if _lives > 0:
+		SoundManager.play_sound(sound, "hurt")
 		generate_ball()
 	else:
 		SignalHub.emit_on_game_over()
@@ -73,14 +76,17 @@ func _on_restart_button_pressed() -> void:
 
 
 func on_game_over() -> void:
+	SoundManager.play_sound(sound, "game_over")
 	menu_label.text = "GAME\n OVER!"
 	pause_game()
 
 
 func on_game_completed() -> void:
+	SoundManager.play_sound(sound, "win")
 	menu_label.text = "You\n win!"
 	pause_game()
 
 
 func _on_pause_button_pressed() -> void:
+	SoundManager.play_sound(sound, "ui_button")
 	pause_game()

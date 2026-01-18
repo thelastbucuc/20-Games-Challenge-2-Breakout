@@ -5,6 +5,9 @@ const SPEED_MULT: float = 10
 const MARGIN: float = 30
 
 
+@onready var sound: AudioStreamPlayer2D = $Sound
+
+
 var _speed : float = 400.0
 var _can_launch: bool = true
 var _player_ref: Paddle
@@ -33,6 +36,7 @@ func _physics_process(delta: float) -> void:
 			relative_collision_x = clampf(relative_collision_x, -0.8, 0.8)
 			var new_direction = Vector2(relative_collision_x, -1).normalized()
 			velocity = new_direction * _speed
+			SoundManager.play_sound(sound, "bounce")
 		elif collider.is_in_group(Brick.GROUP_NAME):
 			collider.queue_free()
 			SignalHub.emit_on_point_scored(collider._points)
@@ -40,13 +44,16 @@ func _physics_process(delta: float) -> void:
 			_speed = min(_speed, 800.0)
 			velocity = velocity.bounce(collision.get_normal())
 			velocity = velocity.normalized() * _speed
+			SoundManager.play_sound(sound, "point")
 		elif global_position.y < 20:
 			SignalHub.emit_on_touched_ceiling()
 			velocity = velocity.bounce(collision.get_normal())
-		elif get_tree().get_nodes_in_group(Brick.GROUP_NAME).is_empty():
-			SignalHub.emit_on_game_completed()
+			SoundManager.play_sound(sound, "bounce")
 		else:
 			velocity = velocity.bounce(collision.get_normal())
+			SoundManager.play_sound(sound, "bounce")
+	if get_tree().get_nodes_in_group(Brick.GROUP_NAME).is_empty():
+		SignalHub.emit_on_game_completed()
 
 
 func on_launch_ball() -> void:
@@ -54,6 +61,7 @@ func on_launch_ball() -> void:
 		_can_launch = false
 		var _rand_x_dir: float = randf_range(-1, 1)
 		velocity = Vector2(_rand_x_dir, -1).normalized() * _speed
+		SoundManager.play_sound(sound, "launch")
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
