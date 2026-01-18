@@ -3,8 +3,7 @@
 Welcome to the second project of my **20 Games Challenge**! This is a fully functional, retro-inspired Breakout game built from the ground up using Godot 4. This project focuses on object instancing, grid management, and dynamic game balancing.
 
 ![Gameplay Preview](gameplay.gif) 
-## You can play the web version of the game directly on your browser via itch.io:
- **[https://thebucuc.itch.io/breakout]**
+## You can play the web version of the game directly on your browser via itch.io: https://thebucuc.itch.io/breakout
 
 ## Key Features
 
