@@ -1,6 +1,9 @@
 extends StaticBody2D
 
 
+class_name Brick
+
+
 const GROUP_NAME: String = "bricks"
 
 
