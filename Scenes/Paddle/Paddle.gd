@@ -8,6 +8,9 @@ const PLAYER_SPEED: float = 200.0
 const GROUP_NAME: String = "paddle"
 
 
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group(GROUP_NAME)
@@ -25,4 +28,5 @@ func get_input() -> float:
 
 
 func on_touched_ceiling() -> void:
-	print("on_touched_ceiling")
+	if sprite_2d.scale.x > 10:
+		sprite_2d.scale.x -= 10

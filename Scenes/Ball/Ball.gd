@@ -51,5 +51,5 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	SignalHub.emit_on_lives_changed(-1)
+	SignalHub.emit_on_ball_missed()
 	queue_free()

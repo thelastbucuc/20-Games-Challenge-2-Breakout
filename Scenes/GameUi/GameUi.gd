@@ -15,22 +15,25 @@ var _lives: int = 3
 
 func _enter_tree() -> void:
 	SignalHub.on_point_scored.connect(on_point_scored)
-	SignalHub.on_lives_changed.connect(on_lives_changed)
+	SignalHub.on_ball_missed.connect(on_ball_missed)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	high_score_label.text = "High Score: " + str(ScoreManager.high_score)
-	on_lives_changed(0)
+	
 
 
-func on_lives_changed(amount: int) -> void:
-	_lives += amount
+func generate_ball() -> void:
+	var b = BALL.instantiate()
+	get_parent().call_deferred("add_child", b)
+
+
+func on_ball_missed() -> void:
+	_lives -=1 
 	lives_label.text = "Lives: " + str(_lives)
-	if amount < 0:
-		var b = BALL.instantiate()
-		b.global_position = Vector2(179.0, 505.0)
-		add_child(b)
+	if _lives > 0:
+		generate_ball()
 
 
 func on_point_scored(amount: int) -> void:
