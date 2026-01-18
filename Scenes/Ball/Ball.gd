@@ -10,11 +10,8 @@ var _can_launch: bool = true
 var _player_ref: Paddle
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("launch") and _can_launch == true:
-		_can_launch = false
-		var _rand_x_dir: float = randf_range(-1, 1)
-		velocity = Vector2(_rand_x_dir, -1).normalized() * _speed
+func _enter_tree() -> void:
+	SignalHub.on_launch_ball.connect(on_launch_ball)
 
 
 func _ready() -> void:
@@ -48,6 +45,13 @@ func _physics_process(delta: float) -> void:
 			velocity = velocity.bounce(collision.get_normal())
 		else:
 			velocity = velocity.bounce(collision.get_normal())
+
+
+func on_launch_ball() -> void:
+	if _can_launch == true:
+		_can_launch = false
+		var _rand_x_dir: float = randf_range(-1, 1)
+		velocity = Vector2(_rand_x_dir, -1).normalized() * _speed
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

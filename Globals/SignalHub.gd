@@ -3,6 +3,7 @@ extends Node
 signal on_point_scored(amount: int)
 signal on_ball_missed
 signal on_touched_ceiling
+signal on_launch_ball
 
 func emit_on_point_scored(amount: int):
 	on_point_scored.emit(amount)
@@ -12,3 +13,6 @@ func emit_on_ball_missed():
 
 func emit_on_touched_ceiling():
 	on_touched_ceiling.emit()
+
+func emit_on_launch_ball():
+	on_launch_ball.emit()
