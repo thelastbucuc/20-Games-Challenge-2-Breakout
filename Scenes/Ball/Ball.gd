@@ -43,6 +43,8 @@ func _physics_process(delta: float) -> void:
 		elif global_position.y < 20:
 			SignalHub.emit_on_touched_ceiling()
 			velocity = velocity.bounce(collision.get_normal())
+		elif get_tree().get_nodes_in_group(Brick.GROUP_NAME).is_empty():
+			SignalHub.emit_on_game_completed()
 		else:
 			velocity = velocity.bounce(collision.get_normal())
 

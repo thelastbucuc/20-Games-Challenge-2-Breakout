@@ -9,6 +9,7 @@ const GROUP_NAME: String = "paddle"
 
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 
 var _mouse_control: bool = false
@@ -49,3 +50,4 @@ func get_input() -> float:
 func on_touched_ceiling() -> void:
 	if sprite_2d.scale.x > 10:
 		sprite_2d.scale.x -= 10
+		collision_shape_2d.shape.size.x -= 10

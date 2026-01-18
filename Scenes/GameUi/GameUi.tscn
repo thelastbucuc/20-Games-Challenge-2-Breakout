@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddwjyf6ubevuh"]
+[gd_scene load_steps=3 format=3 uid="uid://ddwjyf6ubevuh"]
 
 [ext_resource type="Script" uid="uid://cfw8q3sasegxj" path="res://Scenes/GameUi/GameUi.gd" id="1_mb7aw"]
+[ext_resource type="Texture2D" uid="uid://cn18gc0y2knuk" path="res://assets/gear.png" id="2_anb74"]
 
 [node name="GameUi" type="Control"]
 process_mode = 3
@@ -25,6 +26,7 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 6
 
 [node name="ScoreLabel" type="Label" parent="MC"]
+show_behind_parent = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -33,6 +35,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighScoreLabel" type="Label" parent="MC"]
+show_behind_parent = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -41,12 +44,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LivesLabel" type="Label" parent="MC"]
+show_behind_parent = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "Lives: 3"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PauseButton" type="TextureButton" parent="MC"]
+z_index = 10
+z_as_relative = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture_normal = ExtResource("2_anb74")
 
 [node name="Menu" type="Control" parent="."]
 visible = false
@@ -56,6 +68,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Bg" type="ColorRect" parent="Menu"]
 layout_mode = 1
@@ -64,10 +77,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.25490198, 0.25490198, 0.25490198, 0.50980395)
 
-[node name="Bg2" type="ColorRect" parent="Menu"]
-custom_minimum_size = Vector2(220, 250)
+[node name="Menu" type="ColorRect" parent="Menu"]
+custom_minimum_size = Vector2(220, 300)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -75,14 +89,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -110.0
-offset_top = -125.0
+offset_top = -150.0
 offset_right = 110.0
-offset_bottom = 125.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.4745098)
 
-[node name="VB" type="VBoxContainer" parent="Menu/Bg2"]
+[node name="VB" type="VBoxContainer" parent="Menu/Menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -97,7 +111,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 15
 
-[node name="MenuLabel" type="Label" parent="Menu/Bg2/VB"]
+[node name="MenuLabel" type="Label" parent="Menu/Menu/VB"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 48
@@ -105,54 +119,55 @@ text = "PAUSED"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HB" type="HBoxContainer" parent="Menu/Bg2/VB"]
+[node name="HB" type="HBoxContainer" parent="Menu/Menu/VB"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 50
 
-[node name="ScoreVB" type="VBoxContainer" parent="Menu/Bg2/VB/HB"]
+[node name="ScoreVB" type="VBoxContainer" parent="Menu/Menu/VB/HB"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="Menu/Bg2/VB/HB/ScoreVB"]
+[node name="Label" type="Label" parent="Menu/Menu/VB/HB/ScoreVB"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Score"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuScoreLabel" type="Label" parent="Menu/Bg2/VB/HB/ScoreVB"]
+[node name="MenuScoreLabel" type="Label" parent="Menu/Menu/VB/HB/ScoreVB"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "0000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighScoreVB" type="VBoxContainer" parent="Menu/Bg2/VB/HB"]
+[node name="HighScoreVB" type="VBoxContainer" parent="Menu/Menu/VB/HB"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="Menu/Bg2/VB/HB/HighScoreVB"]
+[node name="Label" type="Label" parent="Menu/Menu/VB/HB/HighScoreVB"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Score"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuHighScoreLabel" type="Label" parent="Menu/Bg2/VB/HB/HighScoreVB"]
+[node name="MenuHighScoreLabel" type="Label" parent="Menu/Menu/VB/HB/HighScoreVB"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "0000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RestartButton" type="Button" parent="Menu/Bg2/VB"]
+[node name="RestartButton" type="Button" parent="Menu/Menu/VB"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Restart"
 
-[connection signal="pressed" from="Menu/Bg2/VB/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MC/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="Menu/Menu/VB/RestartButton" to="." method="_on_restart_button_pressed"]

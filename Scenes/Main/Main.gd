@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func generate_bricks() -> void:
 	var row_colors = [Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE]
-	var rows = 1#row_colors.size()
+	var rows = row_colors.size()
 	var cols = 7
 	var margin = 4
 	var offset_x = 35
