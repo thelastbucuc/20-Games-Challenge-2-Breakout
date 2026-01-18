@@ -2,6 +2,7 @@ extends Node2D
 
 
 const BRICK = preload("uid://6go1yaao06g2")
+const BALL = preload("uid://brw33lvwy03yi")
 
 
 @onready var score_label: Label = $CanvasLayer/MC/ScoreLabel
@@ -37,7 +38,7 @@ func generate_bricks() -> void:
 	var brick_height = 12
 	for r in rows:
 		for c in cols:
-			var new_brick = BRICK.instantiate()
+			var new_brick: Brick = BRICK.instantiate()
 			var x_pos = offset_x + c * (brick_width + margin)
 			var y_pos = offset_y + r * (brick_height + margin)
 			new_brick.position = Vector2(x_pos, y_pos)
@@ -60,9 +61,11 @@ func on_point_scored(amount: int) -> void:
 func on_lives_changed(amount: int) -> void:
 	_lives += amount
 	lives_label.text = "Lives: " + str(_lives)
+	if amount < 0:
+		var b = BALL.instantiate()
+		b.global_position = Vector2(179.0, 505.0)
+		add_child(b)
 
 
 func on_touched_ceiling() -> void:
-	if brick_container.global_position.y > get_viewport_rect().end.y:
-		return
-	brick_container.global_position.y += 50
+	print("on_touched_ceiling")

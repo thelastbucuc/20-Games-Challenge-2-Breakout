@@ -2,10 +2,12 @@ extends CharacterBody2D
 
 
 const SPEED_MULT: float = 10
+const MARGIN: float = 30
 
 
 var _speed : float = 400.0
 var _can_launch: bool = true
+var _player_ref: Paddle
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -15,8 +17,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		velocity = Vector2(_rand_x_dir, -1).normalized() * _speed
 
 
+func _ready() -> void:
+	_player_ref = get_tree().get_first_node_in_group(Paddle.GROUP_NAME)
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if _can_launch == true:
+		global_position = Vector2(_player_ref.global_position.x, _player_ref.global_position.y - MARGIN)
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		var collider: Object = collision.get_collider()
